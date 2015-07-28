@@ -26,6 +26,7 @@ BUNDLE_PROCESSING_PATH = os.path.join(BUNDLE_PROCESSING_ROOT, BUNDLE_NAME)
 #print(BUNDLE_PROCESSING_PATH)
 
 QT_BIN_PATH = os.environ['QT_BIN_PATH']
+QT_FRAMEWORK_PATH = os.environ['QT_FRAMEWORK_PATH']
 BUNDLE_FRAMEWORKS_PATH = os.path.join(BUNDLE_PROCESSING_PATH, 'Contents','Frameworks')
 #print(BUNDLE_FRAMEWORKS_PATH)
 version_check = QT_BIN_PATH.split('.')
@@ -80,7 +81,7 @@ for root,frameworks,files in os.walk(BUNDLE_FRAMEWORKS_PATH):
             move('Resources','Versions/Current/Resources')
             # rmdir('Resources')
             # mkdir('Versions/4/Resources')
-            copy(os.path.join(QT_BIN_PATH,'lib',framework,'Contents','Info.plist'),
+            copy(os.path.join(QT_FRAMEWORK_PATH,framework,'Contents','Info.plist'),
                'Versions/%s/Resources/Info.plist' % QT_VERSION)
             symlink('Versions/Current/Resources','Resources')
 
